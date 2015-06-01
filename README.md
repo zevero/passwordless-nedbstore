@@ -18,7 +18,7 @@ Afterwards, follow the guide for [Passwordless](https://github.com/florianheinem
 var passwordless = require('passwordless');
 var NedbStore = require('passwordless-nedbstore');
 
-passwordless.init(new NedbStore());
+passwordless.init(new NedbStore('path/to/token.db'));
 
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
