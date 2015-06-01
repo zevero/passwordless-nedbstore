@@ -18,7 +18,7 @@ Afterwards, follow the guide for [Passwordless](https://github.com/florianheinem
 var passwordless = require('passwordless');
 var NedbStore = require('passwordless-nedbstore');
 
-passwordless.init(new NedbStore('path/to/token.db'));
+passwordless.init(new NedbStore('path/to/token.db')); //token.db will be created if it does not exist
 
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
@@ -32,12 +32,16 @@ app.use(passwordless.acceptToken());
 ## Initialization
 
 ```javascript
-new NedbStore();
+new NedbStore('path/to/token.db'); //token.db will be created if it does not exist
+or
+new NedbStore(options)); //see nedb options
 ```
 
-Example:
+If a String is given the nedb options - Object will have set its filename and autoload: true
+
+Example for most cases:
 ```javascript
-passwordless.init(new NedbStore());
+passwordless.init(new NedbStore('path/to/token.db')); //token.db will be created if it does not exist
 ```
 
 ## Hash and salt
